@@ -1,2 +1,2 @@
 # shivendra-vastralaya
-Clothes shop at NAUHATTA
+Official website of SHIVENDRA VASTRALAYA
