@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <link rel="manifest" href="manifest.json">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#0b1f63">
@@ -365,5 +369,14 @@ footer p{color:#aeb9d3;font-size:.8rem}
 
 <a class="whatsapp" href="https://wa.me/919123414513" target="_blank" rel="noopener" aria-label="WhatsApp">◉</a>
 
+<script>
+  if ("serviceWorker" in navigator) {
+    window.addEventListener("load", () => {
+      navigator.serviceWorker.register("./sw.js")
+        .then(() => console.log("PWA service worker registered"))
+        .catch((error) => console.error("PWA registration failed:", error));
+    });
+  }
+</script>
 </body>
 </html>
