@@ -25,7 +25,8 @@
   --white:#fff;
   --shadow:0 18px 45px rgba(9,37,111,.12);
 }
-*{box-sizing:border-box;scroll-behavior:smooth}
+html { scroll-behavior: smooth; scroll-padding-top: 90px; }
+*{box-sizing:border-box;}
 body{margin:0;font-family:Poppins,Arial,sans-serif;background:var(--cream);color:var(--ink);line-height:1.65}
 img{max-width:100%;display:block}
 a{text-decoration:none}
@@ -84,7 +85,12 @@ a{text-decoration:none}
 .card img{width:100%;height:100%;object-fit:cover;transition:.5s}
 .card:hover img{transform:scale(1.06)}
 .card:after{content:"";position:absolute;inset:0;background:linear-gradient(transparent 35%,rgba(0,0,0,.78))}
-.card-content{position:absolute;left:20px;right:20px;bottom:18px;z-index:2;color:#fff}
+.card-content{
+  position:absolute;left:20px;right:20px;bottom:18px;z-index:2;color:#fff;
+  transform:translateY(10px);
+  transition:transform 0.4s ease;
+}
+.card:hover .card-content{transform:translateY(0);}
 .card-content h3{font:600 1.35rem "Playfair Display",serif;margin:0}
 .card-content p{font-size:.78rem;margin:3px 0 0;color:#eee}
 
@@ -136,7 +142,17 @@ footer p{color:#aeb9d3;font-size:.8rem}
 }
 
 @media(max-width:900px){
-  .nav-links{display:none}.menu{display:inline-flex}
+  .nav-links{
+    position:fixed;top:74px;right:-100%;width:250px;height:calc(100vh - 74px);
+    background:rgba(9,37,111,.98);backdrop-filter:blur(15px);
+    flex-direction:column;align-items:flex-start;padding:30px;gap:30px;
+    transition:right 0.3s ease-in-out;box-shadow:-5px 0 20px rgba(0,0,0,.2);
+    display:flex;
+  }
+  .nav-links.active{right:0;}
+  .nav-links a{font-size:1.2rem;width:100%;border-bottom:1px solid rgba(255,255,255,.1);padding-bottom:10px;}
+  .menu{display:inline-flex;border:none;background:transparent;cursor:pointer;font-size:1.5rem;}
+  
   .hero-inner,.about-grid,.contact-grid{grid-template-columns:1fr}
   .hero-logo{justify-self:center;max-width:360px}
   .features{grid-template-columns:1fr 1fr}
@@ -173,7 +189,7 @@ footer p{color:#aeb9d3;font-size:.8rem}
       </span>
     </a>
 
-    <div class="nav-links">
+    <div class="nav-links" id="navLinks">
       <a href="#home">Home</a>
       <a href="#collections">Collections</a>
       <a href="#about">About</a>
@@ -183,7 +199,7 @@ footer p{color:#aeb9d3;font-size:.8rem}
 
     <div class="nav-actions">
       <a class="icon-btn" href="tel:+919534329347" aria-label="Call">☎</a>
-      <a class="icon-btn menu" href="#contact" aria-label="Contact">☰</a>
+      <button class="icon-btn menu" id="menuToggle" aria-label="Menu">☰</button>
     </div>
   </div>
 </nav>
@@ -199,10 +215,10 @@ footer p{color:#aeb9d3;font-size:.8rem}
         shirts, T-shirts, kurtis, salwar suits, dresses and more.
       </p>
       <div class="buttons">
-        <a class="btn btn-gold" href="https://wa.me/919123414513?text=Hello%20Shivendra%20Vastralaya%2C%20I%20would%20like%20to%20know%20about%20your%20collection." target="_blank" rel="noopener">💬 WhatsApp Us</a>
-        <a class="btn btn-white" href="tel:+919534329347">📞 Call 95343 29347</a>
-        <a class="btn btn-outline" href="https://maps.app.goo.gl/tNoCX9RoiNMU1uaK8?g_st=ac" target="_blank" rel="noopener">📍 Get Directions</a>
+        <a class="btn btn-gold" style="padding: 15px 28px; font-size: 1.1rem; box-shadow: 0 8px 20px rgba(214,166,58,0.4);" href="https://wa.me/919123414513?text=Hello%20Shivendra%20Vastralaya%2C%20I%20would%20like%20to%20know%20about%20your%20collection." target="_blank" rel="noopener">💬 WhatsApp Us</a>
+        <a class="btn btn-white" href="tel:+919534329347">📞 Call Now</a>
       </div>
+      <a href="https://maps.app.goo.gl/tNoCX9RoiNMU1uaK8?g_st=ac" target="_blank" rel="noopener" style="display:inline-block; margin-top:20px; color:var(--gold2); font-size:0.9rem; text-decoration:underline;">📍 View on Google Maps</a>
     </div>
     <img class="hero-logo" src="assets/brand-logo.png" alt="Shivendra Vastralaya branding">
   </div>
@@ -258,18 +274,31 @@ footer p{color:#aeb9d3;font-size:.8rem}
     </div>
     <div class="about-copy">
       <div class="eyebrow" style="color:#b6811d">About The Store</div>
-      <h2>A Familiar Name For Local Clothing</h2>
+      <h2>A Trusted Name in Purvi Bihar</h2>
       <p>
-        Shivendra Vastralaya is best clothes shop located near Durga Mandir
-        Chowk in Nauhatta, Saharsa. The store offers a broad mix of
-        clothing, including cotton suits, shirts, T-shirts, kurtis,
-        salwar suits and other garments.
+        Located in Gupta Gali near Durga Mandir Chowk in Nauhatta, Saharsa, Shivendra Vastralaya is a one-stop destination for all your clothing needs. Whether you are looking for comfortable daily wear or affordable, elegant apparel for weddings, we provide high-quality options for both wholesale and retail customers. 
       </p>
       <div class="owner">
         <strong>Birendra Prasad</strong>
         <small>Proprietor • बीरेन्द्र प्रसाद</small>
+        <p style="margin-top: 10px; font-size: 0.9rem; color: var(--muted);">
+          "Our commitment is to quality and service. Here, every customer is treated like family."
+        </p>
       </div>
     </div>
+  </div>
+</section>
+
+<section class="jingle-banner" style="background: var(--gold2); color: var(--blue); text-align: center; padding: 50px 20px;">
+  <div class="container" style="padding: 0; max-width: 800px;">
+    <div class="eyebrow" style="color: var(--blue); margin-bottom: 10px;">The Sound of Our Store</div>
+    <h2 style="font-family: 'Playfair Display', serif; font-size: 2.5rem; margin: 0 0 20px;">Our Signature Jingle</h2>
+    <blockquote style="font-size: 1.25rem; font-style: italic; line-height: 1.8; margin: 0;">
+      "For weddings or for daily wear, the finest clothes are waiting there.<br>
+      From suits and shirts to bright dupattas, the best saadi is in Nauhatta.<br>
+      Wholesale, retail, quality grand—Shivendra Vastralaya, the trusted brand!"
+    </blockquote>
+    <p style="margin-top: 20px; font-weight: 600;">— Birendra Prasad, शिवेंद्र वस्त्रालय</p>
   </div>
 </section>
 
@@ -330,6 +359,75 @@ footer p{color:#aeb9d3;font-size:.8rem}
           <div class="contact-item">
             <div>🕐</div>
             <div><b>Hours</b>Open 24 hours</div>
+          </div>
+        </div>
+
+        <div class="buttons">
+          <a class="btn btn-gold" href="https://maps.app.goo.gl/tNoCX9RoiNMU1uaK8?g_st=ac" target="_blank" rel="noopener">📍 Open Google Maps</a>
+          <a class="btn btn-white" href="https://wa.me/919123414513" target="_blank" rel="noopener">💬 WhatsApp</a>
+        </div>
+      </div>
+
+      <div class="map-card">
+        <div class="map-card-inner">
+          <div>
+            <div class="pin">📍</div>
+            <h3>Shivendra Vastralaya</h3>
+            <p>Gupta Gali, Near Durga Sthan Chowk<br>Nauhatta, Saharsa 852123</p>
+            <a class="btn btn-gold" href="https://maps.app.goo.gl/tNoCX9RoiNMU1uaK8?g_st=ac" target="_blank" rel="noopener">Open Location</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <h2>Looking For Something Special?</h2>
+  <p>Message us on WhatsApp and ask about our current collection.</p>
+  <a class="btn btn-gold" href="https://wa.me/919123414513?text=Hello%20Shivendra%20Vastralaya%2C%20please%20share%20your%20latest%20collection." target="_blank" rel="noopener">💬 Message On WhatsApp</a>
+</section>
+
+<footer>
+  <img src="assets/brand-logo.png" alt="Shivendra Vastralaya logo">
+  <strong>Shivendra Vastralaya</strong>
+  <p>शिवेंद्र वस्त्रालय • Clothes Shop</p>
+  <p>Gupta Gali, Near Durga Sthan Chowk, Nauhatta, Saharsa 852123</p>
+  <p>© 2026 Shivendra Vastralaya. All Rights Reserved.</p>
+</footer>
+
+<a class="whatsapp" href="https://wa.me/919123414513" target="_blank" rel="noopener" aria-label="WhatsApp">◉</a>
+
+<script>
+  // Mobile Menu Script
+  const menuToggle = document.getElementById('menuToggle');
+  const navLinks = document.getElementById('navLinks');
+  
+  if (menuToggle && navLinks) {
+    menuToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+      menuToggle.textContent = navLinks.classList.contains('active') ? '✕' : '☰';
+    });
+
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('active');
+        menuToggle.textContent = '☰';
+      });
+    });
+  }
+
+  // PWA Service Worker
+  if ("serviceWorker" in navigator) {
+    window.addEventListener("load", () => {
+      navigator.serviceWorker.register("./sw.js")
+        .then(() => console.log("PWA service worker registered"))
+        .catch((error) => console.error("PWA registration failed:", error));
+    });
+  }
+</script>
+</body>
+</html>
           </div>
         </div>
 
